@@ -20,7 +20,15 @@
       "Bash(node -e \"const pkg=require\\(''./package.json''\\); console.log\\(''Next:'', pkg.dependencies.next, ''| Supabase SSR:'', pkg.dependencies[''@supabase/ssr'']\\)\")",
       "Bash(grep -rn 'from \"\"@/lib/supabase/server\"\"' /Users/amandaclark/Downloads/Copa/src --include=\"*.ts\" --include=\"*.tsx\")",
       "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" cd /Users/amandaclark/Downloads/Copa npm install eslint-config-next@latest --save-dev)",
-      "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" cd /Users/amandaclark/Downloads/Copa npm install eslint-config-next@latest --save-dev --legacy-peer-deps)"
+      "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" cd /Users/amandaclark/Downloads/Copa npm install eslint-config-next@latest --save-dev --legacy-peer-deps)",
+      "Bash(ls /Users/amandaclark/Downloads/Copa/.env*)",
+      "Bash(npx prisma:*)",
+      "Bash(export DATABASE_URL=\"postgresql://postgres.mpittlzgqjrtpaymkykg:QH6MkekQR5EyLEvk@aws-0-sa-east-1.pooler.supabase.com:6543/postgres?pgbouncer=true\")",
+      "Bash(export DIRECT_URL=\"postgresql://postgres.mpittlzgqjrtpaymkykg:QH6MkekQR5EyLEvk@aws-0-sa-east-1.pooler.supabase.com:5432/postgres\")",
+      "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" export DATABASE_URL=\"postgresql://postgres:QH6MkekQR5EyLEvk@db.mpittlzgqjrtpaymkykg.supabase.co:5432/postgres?sslmode=require\" export DIRECT_URL=\"postgresql://postgres:QH6MkekQR5EyLEvk@db.mpittlzgqjrtpaymkykg.supabase.co:5432/postgres?sslmode=require\" npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script)",
+      "Read(//tmp/**)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
     ]
   }
 }
