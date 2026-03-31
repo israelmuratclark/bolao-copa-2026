@@ -51,7 +51,10 @@
       "Bash(git -C /Users/amandaclark/Downloads/Copa add package.json)",
       "Bash(git -C /Users/amandaclark/Downloads/Copa commit -m \"fix: upgrade eslint to ^9 for eslint-config-next@16 compatibility\")",
       "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm run build)",
-      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm install)"
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm install)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel domains add bolao-copa-2026.vercel.app)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel domains add bolao-copa-2026.vercel.app --force)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" node -e \":*)"
     ]
   }
 }
