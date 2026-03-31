@@ -28,7 +28,30 @@
       "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" export DATABASE_URL=\"postgresql://postgres:QH6MkekQR5EyLEvk@db.mpittlzgqjrtpaymkykg.supabase.co:5432/postgres?sslmode=require\" export DIRECT_URL=\"postgresql://postgres:QH6MkekQR5EyLEvk@db.mpittlzgqjrtpaymkykg.supabase.co:5432/postgres?sslmode=require\" npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script)",
       "Read(//tmp/**)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(gh --version)",
+      "Bash(npx vercel:*)",
+      "Bash(git -C /Users/amandaclark/Downloads/Copa config --global credential.helper)",
+      "Bash(security find-internet-password:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" cd /Users/amandaclark/Downloads/Copa echo \"\")",
+      "Bash(export PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" cd /Users/amandaclark/Downloads/Copa npx vercel --token 3plQuzTRWBgOVmWirNHMcOxN --yes)",
+      "Bash(/bin/zsh -i -c 'which node; which vercel')",
+      "Bash(/bin/zsh -l -c 'echo $PATH; which node 2>&1; which vercel 2>&1')",
+      "Bash(/Users/amandaclark/.local/nodejs/bin/npm install:*)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm install -g vercel)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel whoami)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel link --yes --project bolao-copa-2026)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel deploy --prod)",
+      "Bash(find /Users/amandaclark -maxdepth 5 -name auth.json -path *vercel* 2)",
+      "Bash(/dev/null find:*)",
+      "Bash(git commit:*)",
+      "Bash(rm /Users/amandaclark/Downloads/Copa/.git/index.lock)",
+      "Bash(git -C /Users/amandaclark/Downloads/Copa add package.json)",
+      "Bash(git -C /Users/amandaclark/Downloads/Copa commit -m \"fix: upgrade eslint to ^9 for eslint-config-next@16 compatibility\")",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm run build)",
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm install)"
     ]
   }
 }

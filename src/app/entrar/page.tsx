@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import Link from "next/link";
 import { Trophy, Mail, ArrowLeft, CheckCircle } from "lucide-react";
 
-export default function EntrarPage() {
+function EntrarForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const next = searchParams.get("next") ?? "/dashboard";
@@ -196,5 +196,13 @@ export default function EntrarPage() {
         </Link>
       </div>
     </div>
+  );
+}
+
+export default function EntrarPage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Carregando...</div>}>
+      <EntrarForm />
+    </Suspense>
   );
 }

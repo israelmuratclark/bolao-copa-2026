@@ -4,8 +4,9 @@ import { prisma } from "@/lib/prisma";
 
 export async function GET(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const supabase = await createClient();
   const { data: { session } } = await supabase.auth.getSession();
 
@@ -23,7 +24,7 @@ export async function GET(
   }
 
   const jogo = await prisma.jogo.findUnique({
-    where: { id: Number(params.id) },
+    where: { id: Number(id) },
     include: { mandante: true, visitante: true },
   });
 
