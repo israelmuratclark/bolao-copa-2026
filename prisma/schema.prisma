@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum StatusPagamento {
+  pendente
+  aprovado
+  rejeitado
+  reembolsado
+}
+
+enum StatusJogo {
+  agendado
+  ao_vivo
+  encerrado
+  cancelado
+}
+
+enum FaseTorneio {
+  fase_grupos
+  rodada_32
+  oitavas_de_final
+  quartas_de_final
+  semifinal
+  terceiro_lugar
+  final
+}
+
+enum RoleUsuario {
+  participante
+  admin
+}
+
+model Usuario {
+  id          String      @id @default(uuid())
+  authId      String      @unique @map("auth_id")
+  nome        String
+  email       String      @unique
+  telefone    String?
+  chavePix    String?     @map("chave_pix")
+  role        RoleUsuario @default(participante)
+  pago        Boolean     @default(false)
+  criadoEm   DateTime    @default(now()) @map("criado_em")
+  atualizadoEm DateTime   @updatedAt @map("atualizado_em")
+
+  apostas    Aposta[]
+  pontuacao  Pontuacao?
+  pagamentos Pagamento[]
+  premios    Premio[]
+
+  @@map("usuarios")
+}
+
+model Selecao {
+  id         Int      @id @default(autoincrement())
+  nome       String
+  nomeEn     String   @map("nome_en")
+  codigoFifa String   @unique @map("codigo_fifa") @db.Char(3)
+  bandeirUrl String?  @map("bandeira_url")
+  grupo      String?  @db.Char(1)
+  criadoEm  DateTime @default(now()) @map("criado_em")
+
+  jogosComoMandante  Jogo[] @relation("Mandante")
+  jogosComoVisitante Jogo[] @relation("Visitante")
+
+  @@map("selecoes")
+}
+
+model Jogo {
+  id                    Int         @id @default(autoincrement())
+  fase                  FaseTorneio
+  numeroJogo            Int         @unique @map("numero_jogo")
+  mandanteId            Int?        @map("mandante_id")
+  visitanteId           Int?        @map("visitante_id")
+  mandantePlaceholder   String?     @map("mandante_placeholder")
+  visitantePlaceholder  String?     @map("visitante_placeholder")
+  estadio               String
+  cidade                String
+
+  dataHoraUtc           DateTime    @map("data_hora_utc")
+  prazoApostas          DateTime    @map("prazo_apostas")
+
+  status                StatusJogo  @default(agendado)
+  golsMandante          Int?        @map("gols_mandante")
+  golsVisitante         Int?        @map("gols_visitante")
+  resultadoProrrogacao  Boolean     @default(false) @map("resultado_prorrogacao")
+  resultadoPenaltis     Boolean     @default(false) @map("resultado_penaltis")
+
+  grupo        String?  @db.Char(1)
+  rodadaGrupo  Int?     @map("rodada_grupo")
+
+  criadoEm   DateTime @default(now()) @map("criado_em")
+  atualizadoEm DateTime @updatedAt @map("atualizado_em")
+
+  mandante   Selecao? @relation("Mandante", fields: [mandanteId], references: [id])
+  visitante  Selecao? @relation("Visitante", fields: [visitanteId], references: [id])
+  apostas    Aposta[]
+
+  @@index([fase])
+  @@index([dataHoraUtc])
+  @@map("jogos")
+}
+
+model Aposta {
+  id             String   @id @default(uuid())
+  usuarioId      String   @map("usuario_id")
+  jogoId         Int      @map("jogo_id")
+  golsMandante   Int      @map("gols_mandante")
+  golsVisitante  Int      @map("gols_visitante")
+  pontosObtidos  Int?     @map("pontos_obtidos")
+  calculadoEm   DateTime? @map("calculado_em")
+  criadoEm      DateTime  @default(now()) @map("criado_em")
+  atualizadoEm  DateTime  @updatedAt @map("atualizado_em")
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  jogo    Jogo    @relation(fields: [jogoId], references: [id], onDelete: Cascade)
+
+  @@unique([usuarioId, jogoId])
+  @@index([usuarioId])
+  @@index([jogoId])
+  @@map("apostas")
+}
+
+model Pontuacao {
+  usuarioId       String   @id @map("usuario_id")
+  totalPontos     Int      @default(0) @map("total_pontos")
+  acertosExatos   Int      @default(0) @map("acertos_exatos")
+  acertosParciais Int      @default(0) @map("acertos_parciais")
+  jogosApostados  Int      @default(0) @map("jogos_apostados")
+  atualizadoEm   DateTime  @updatedAt @map("atualizado_em")
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@map("pontuacoes")
+}
+
+model Pagamento {
+  id               String          @id @default(uuid())
+  usuarioId        String          @map("usuario_id")
+  tipo             String          @default("inscricao")
+  valorCentavos    Int             @map("valor_centavos")
+  status           StatusPagamento @default(pendente)
+  provedor         String          @default("mercadopago")
+  provedorPaymentId String?        @map("provedor_payment_id")
+  provedorQrCode   String?         @map("provedor_qr_code") @db.Text
+  provedorQrCodeUrl String?        @map("provedor_qr_code_url")
+  provedorResponse Json?           @map("provedor_response")
+  webhookRecebidoEm DateTime?      @map("webhook_recebido_em")
+  expiraEm         DateTime?       @map("expira_em")
+  criadoEm        DateTime         @default(now()) @map("criado_em")
+  atualizadoEm    DateTime         @updatedAt @map("atualizado_em")
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+
+  @@index([usuarioId])
+  @@index([provedorPaymentId])
+  @@map("pagamentos")
+}
+
+model Premio {
+  id            Int      @id @default(autoincrement())
+  usuarioId     String   @map("usuario_id")
+  posicao       Int
+  valorCentavos Int      @map("valor_centavos")
+  totalPontos   Int      @map("total_pontos")
+  pago          Boolean  @default(false)
+  pagoEm       DateTime? @map("pago_em")
+  criadoEm     DateTime  @default(now()) @map("criado_em")
+
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+
+  @@map("premios")
+}
+
+model Configuracao {
+  chave    String @id
+  valor    String
+  descricao String?
+
+  @@map("configuracoes")
+}
