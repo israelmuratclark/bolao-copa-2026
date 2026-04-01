@@ -227,7 +227,7 @@ export default function InscricaoPage() {
           )}
 
           <Link href="/dashboard" className="mt-6 block text-center text-sm text-gray-400 hover:text-gray-600">
-            Voltar ao dashboard
+            Voltar ao painel
           </Link>
         </div>
       </main>

@@ -36,7 +36,7 @@ export default async function AdminPremiosPage() {
     acertosExatos: p.acertosExatos,
     acertosParciais: p.acertosParciais,
     jogosApostados: p.jogosApostados,
-    criadoEm: p.usuario.criadoEm,
+    criadoEm: new Date(p.usuario.criadoEm),
   }));
 
   const top3 = ordenarClassificacao(entradas).slice(0, 3).map((e, i) => ({

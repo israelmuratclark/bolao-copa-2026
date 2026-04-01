@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 const ROTAS_PROTEGIDAS = ["/dashboard", "/apostas", "/inscricao", "/perfil"];
 const ROTAS_ADMIN = ["/admin"];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   let supabaseResponse = NextResponse.next({ request: req });
 
   const supabase = createServerClient(
@@ -43,12 +43,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (rotaAdmin && user) {
-    const userRole = user.user_metadata?.role;
-    if (userRole !== "admin") {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
-  }
+  // Autorização de admin é verificada em cada página/rota via DB (tabela usuarios.role)
+  // O middleware apenas garante que o usuário esteja autenticado.
 
   return supabaseResponse;
 }

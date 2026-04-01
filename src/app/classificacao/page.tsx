@@ -48,7 +48,7 @@ export default async function ClassificacaoPage() {
     acertosExatos: p.acertosExatos,
     acertosParciais: p.acertosParciais,
     jogosApostados: p.jogosApostados,
-    criadoEm: p.usuario.criadoEm,
+    criadoEm: new Date(p.usuario.criadoEm),
   }));
 
   const classificacao = ordenarClassificacao(entradas).map((e, i) => ({

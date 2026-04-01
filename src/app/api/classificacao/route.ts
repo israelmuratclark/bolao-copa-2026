@@ -21,7 +21,7 @@ export async function GET() {
     acertosExatos: p.acertosExatos,
     acertosParciais: p.acertosParciais,
     jogosApostados: p.jogosApostados,
-    criadoEm: p.usuario.criadoEm,
+    criadoEm: new Date(p.usuario.criadoEm),
   }));
 
   const ordenado = ordenarClassificacao(entradas).map((e, i) => ({

@@ -39,7 +39,7 @@ export default async function DashboardPage() {
       acertosExatos: p.acertosExatos,
       acertosParciais: p.acertosParciais,
       jogosApostados: p.jogosApostados,
-      criadoEm: p.usuario.criadoEm,
+      criadoEm: new Date(p.usuario.criadoEm),
     }));
     const ordenado = ordenarClassificacao(entradas);
     posicao = ordenado.findIndex((e) => e.usuarioId === usuario.id) + 1 || null;
