@@ -58,7 +58,7 @@ export function PrizeCounter({ initialCount }: PrizeCounterProps) {
         <p className="mt-1 text-4xl font-bold text-brand-green">
           {formatarReais(premio.total)}
         </p>
-        <p className="text-sm text-gray-400">pool total</p>
+        <p className="text-sm text-gray-400">total arrecadado</p>
       </div>
 
       <div className="grid grid-cols-3 gap-3">

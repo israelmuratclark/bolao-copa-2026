@@ -54,7 +54,7 @@ export function Navbar({ userRole, userName, pago }: NavbarProps) {
             {userRole && (
               <>
                 <Link href="/dashboard" className={linkClass("/dashboard")}>
-                  Dashboard
+                  Painel
                 </Link>
                 {pago ? (
                   <Link href="/apostas" className={linkClass("/apostas")}>
@@ -101,7 +101,7 @@ export function Navbar({ userRole, userName, pago }: NavbarProps) {
           <button
             className="md:hidden"
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menu"
+            aria-label="Abrir menu de navegação"
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -121,7 +121,7 @@ export function Navbar({ userRole, userName, pago }: NavbarProps) {
             {userRole && (
               <>
                 <Link href="/dashboard" className={linkClass("/dashboard")} onClick={() => setMenuOpen(false)}>
-                  Dashboard
+                  Painel
                 </Link>
                 {pago ? (
                   <Link href="/apostas" className={linkClass("/apostas")} onClick={() => setMenuOpen(false)}>
