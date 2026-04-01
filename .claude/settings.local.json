@@ -69,7 +69,12 @@
       "Bash(nc -w 3 aws-0-sa-east-1.pooler.supabase.com 6543)",
       "Bash(xxd)",
       "Bash(npx tsc:*)",
-      "Bash(vercel --prod)"
+      "Bash(vercel --prod)",
+      "Bash(curl -s \"https://bolao-copa-2026-bice.vercel.app/api/test\")",
+      "Bash(curl -s \"https://bolao-copa-2026-bice.vercel.app/api/classificacao\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"https://bolao-copa-2026-bice.vercel.app/\")",
+      "Bash(npm run:*)",
+      "Bash(DATABASE_URL=\"postgresql://postgres:QH6MkekQR5EyLEvk@db.mpittlzgqjrtpaymkykg.supabase.co:5432/postgres\" DIRECT_URL=\"postgresql://postgres:QH6MkekQR5EyLEvk@db.mpittlzgqjrtpaymkykg.supabase.co:5432/postgres\" npx tsx --env-file=.env.local prisma/seed.ts)"
     ]
   }
 }
