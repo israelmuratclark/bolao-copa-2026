@@ -54,7 +54,22 @@
       "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" npm install)",
       "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel domains add bolao-copa-2026.vercel.app)",
       "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" vercel domains add bolao-copa-2026.vercel.app --force)",
-      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" node -e \":*)"
+      "Bash(PATH=\"/Users/amandaclark/.local/nodejs/bin:$PATH\" node -e \":*)",
+      "Bash(vercel env:*)",
+      "Bash(nc -z -w 5 aws-0-sa-east-1.pooler.supabase.com 6543)",
+      "Bash(node -e \":*)",
+      "Bash(DATABASE_URL=\"postgresql://postgres.mpittlzgqjrtpaymkykg:QH6MkekQR5EyLEvk@aws-0-sa-east-1.pooler.supabase.com:6543/postgres?pgbouncer=true\" node -e \":*)",
+      "Bash(curl -s \"https://mpittlzgqjrtpaymkykg.supabase.co/rest/v1/usuarios?select=count\" -H \"apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1waXR0bHpncWpydHBheW1reWtnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDkzMTc1NywiZXhwIjoyMDkwNTA3NzU3fQ.zExBlgPPyw8G0yeKAk7c2a8oRapGFMmPJO81768QR54\" -H \"Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1waXR0bHpncWpydHBheW1reWtnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDkzMTc1NywiZXhwIjoyMDkwNTA3NzU3fQ.zExBlgPPyw8G0yeKAk7c2a8oRapGFMmPJO81768QR54\" -H \"Prefer: count=exact\")",
+      "Bash(export DATABASE_URL=\"postgresql://postgres.mpittlzgqjrtpaymkykg:QH6MkekQR5EyLEvk@aws-0-sa-east-1.pooler.supabase.com:5432/postgres\")",
+      "Bash(npx supabase:*)",
+      "Bash(nc -z -w 5 db.mpittlzgqjrtpaymkykg.supabase.co 6543)",
+      "Bash(nslookup db.mpittlzgqjrtpaymkykg.supabase.co)",
+      "Bash(nslookup db.mpittlzgqjrtpaymkykg.supabase.co 8.8.8.8)",
+      "Bash(printf \"GET / HTTP/1.0\\\\r\\\\n\\\\r\\\\n\")",
+      "Bash(nc -w 3 aws-0-sa-east-1.pooler.supabase.com 6543)",
+      "Bash(xxd)",
+      "Bash(npx tsc:*)",
+      "Bash(vercel --prod)"
     ]
   }
 }
