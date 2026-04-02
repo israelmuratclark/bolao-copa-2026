@@ -1,5 +1,4 @@
 import { createServerClient } from "@supabase/ssr";
-import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import type { EmailOtpType } from "@supabase/supabase-js";
@@ -11,18 +10,22 @@ export async function GET(req: NextRequest) {
   const type = searchParams.get("type") as EmailOtpType | null;
   const next = searchParams.get("next") ?? "/dashboard";
 
-  const cookieStore = await cookies();
+  // Cria o response de redirect ANTES, para que o Supabase client
+  // escreva os cookies de sessão diretamente nele (não em um cookie store separado).
+  const response = NextResponse.redirect(new URL(next, req.url));
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         getAll() {
-          return cookieStore.getAll();
+          return req.cookies.getAll();
         },
         setAll(cookiesToSet) {
+          // Escreve os cookies de autenticação diretamente no response de redirect
           cookiesToSet.forEach(({ name, value, options }) =>
-            cookieStore.set(name, value, options)
+            response.cookies.set(name, value, options)
           );
         },
       },
@@ -36,7 +39,7 @@ export async function GET(req: NextRequest) {
     const { data } = await supabase.auth.exchangeCodeForSession(code);
     session = data.session;
   } else if (token_hash && type) {
-    // Token-hash flow (default for signInWithOtp magic links)
+    // Token-hash flow (default para signInWithOtp magic links)
     const { data } = await supabase.auth.verifyOtp({ token_hash, type });
     session = data.session;
   }
@@ -60,5 +63,5 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  return NextResponse.redirect(new URL(next, req.url));
+  return response;
 }
