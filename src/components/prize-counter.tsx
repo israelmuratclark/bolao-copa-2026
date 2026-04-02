@@ -46,36 +46,36 @@ export function PrizeCounter({ initialCount }: PrizeCounterProps) {
   };
 
   return (
-    <div className="rounded-2xl border border-brand-green/20 bg-gradient-to-br from-brand-green/5 to-brand-yellow/5 p-6">
+    <div className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur-sm p-6">
       <div className="mb-4 flex items-center gap-2">
         <Trophy className="h-5 w-5 text-brand-yellow" />
-        <h3 className="font-semibold text-gray-900">Prêmio Estimado</h3>
+        <h3 className="font-semibold text-white">Prêmio Estimado</h3>
         <span className="badge-green ml-auto">Ao vivo</span>
       </div>
 
       <div className="mb-4 text-center">
-        <p className="text-sm text-gray-500">{count} participante{count !== 1 ? "s" : ""}</p>
-        <p className="mt-1 text-4xl font-bold text-brand-green">
+        <p className="text-sm text-white/70">{count} participante{count !== 1 ? "s" : ""}</p>
+        <p className="mt-1 text-4xl font-bold text-brand-yellow">
           {formatarReais(premio.total)}
         </p>
-        <p className="text-sm text-gray-400">total arrecadado</p>
+        <p className="text-sm text-white/60">total arrecadado</p>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-lg bg-white p-3 text-center shadow-sm">
+        <div className="rounded-lg bg-white/15 p-3 text-center">
           <div className="text-lg">🥇</div>
-          <div className="text-sm font-bold text-gray-900">{formatarReais(premio.primeiro)}</div>
-          <div className="text-xs text-gray-500">1º lugar</div>
+          <div className="text-sm font-bold text-white">{formatarReais(premio.primeiro)}</div>
+          <div className="text-xs text-white/60">1º lugar</div>
         </div>
-        <div className="rounded-lg bg-white p-3 text-center shadow-sm">
+        <div className="rounded-lg bg-white/15 p-3 text-center">
           <div className="text-lg">🥈</div>
-          <div className="text-sm font-bold text-gray-900">{formatarReais(premio.segundo)}</div>
-          <div className="text-xs text-gray-500">2º lugar</div>
+          <div className="text-sm font-bold text-white">{formatarReais(premio.segundo)}</div>
+          <div className="text-xs text-white/60">2º lugar</div>
         </div>
-        <div className="rounded-lg bg-white p-3 text-center shadow-sm">
+        <div className="rounded-lg bg-white/15 p-3 text-center">
           <div className="text-lg">🥉</div>
-          <div className="text-sm font-bold text-gray-900">{formatarReais(premio.terceiro)}</div>
-          <div className="text-xs text-gray-500">3º lugar</div>
+          <div className="text-sm font-bold text-white">{formatarReais(premio.terceiro)}</div>
+          <div className="text-xs text-white/60">3º lugar</div>
         </div>
       </div>
     </div>
