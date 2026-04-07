@@ -86,9 +86,10 @@ export async function GET(req: NextRequest) {
         pago: false,
       },
     });
-  } catch (e) {
+  } catch (e: unknown) {
+    const msg = e instanceof Error ? e.message.slice(0, 120) : String(e).slice(0, 120);
     console.error("[AUTH CALLBACK] Prisma upsert erro:", e);
-    return errorResponse("db_error");
+    return errorResponse("db_error__" + encodeURIComponent(msg));
   }
 
   console.log("[AUTH CALLBACK] Sucesso! Redirecionando para:", next);
