@@ -87,9 +87,11 @@ export async function GET(req: NextRequest) {
       },
     });
   } catch (e: unknown) {
-    const msg = e instanceof Error ? e.message.slice(0, 120) : String(e).slice(0, 120);
+    const msg = (e && typeof e === 'object' && 'message' in e)
+      ? String((e as {message: unknown}).message).slice(0, 150)
+      : JSON.stringify(e, Object.getOwnPropertyNames(e as object)).slice(0, 150);
     console.error("[AUTH CALLBACK] Prisma upsert erro:", e);
-    return errorResponse("db_error__" + encodeURIComponent(msg));
+    return errorResponse("db__" + encodeURIComponent(msg));
   }
 
   console.log("[AUTH CALLBACK] Sucesso! Redirecionando para:", next);
