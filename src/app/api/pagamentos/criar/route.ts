@@ -3,11 +3,14 @@ import { createClient } from "@/lib/supabase/server";
 import { prisma } from "@/lib/prisma";
 import MercadoPagoConfig, { Payment } from "mercadopago";
 
+export const maxDuration = 30;
+
 const client = new MercadoPagoConfig({
   accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN!,
 });
 
 export async function POST(req: NextRequest) {
+  try {
   const supabase = await createClient();
   const { data: { session } } = await supabase.auth.getSession();
 
@@ -110,4 +113,9 @@ export async function POST(req: NextRequest) {
       expiraEm,
     },
   });
+  } catch (e) {
+    console.error("[pagamentos/criar] erro:", e);
+    const msg = e instanceof Error ? e.message : String(e);
+    return NextResponse.json({ success: false, error: msg.slice(0, 200) }, { status: 500 });
+  }
 }
