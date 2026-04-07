@@ -114,8 +114,10 @@ export async function POST(req: NextRequest) {
     },
   });
   } catch (e) {
-    console.error("[pagamentos/criar] erro:", e);
-    const msg = e instanceof Error ? e.message : String(e);
-    return NextResponse.json({ success: false, error: msg.slice(0, 200) }, { status: 500 });
+    console.error("[pagamentos/criar] erro:", JSON.stringify(e, Object.getOwnPropertyNames(e as object)));
+    const msg = (e && typeof e === "object" && "message" in e)
+      ? String((e as {message: unknown}).message)
+      : JSON.stringify(e, Object.getOwnPropertyNames(e as object));
+    return NextResponse.json({ success: false, error: msg.slice(0, 300) }, { status: 500 });
   }
 }
